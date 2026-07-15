@@ -1,5 +1,5 @@
 /**
- * Decide se com.aurepay:aurepay (Maven) deve publicar.
+ * Decide se br.com.aurepay:aurepay (Maven) deve publicar.
  * exit 0 = publish, 10 = skip, 1 = erro (mudou sem bump)
  */
 import { createHash } from 'node:crypto'
@@ -19,7 +19,7 @@ import { fileURLToPath } from 'node:url'
 import { execSync } from 'node:child_process'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const groupId = 'com.aurepay'
+const groupId = 'br.com.aurepay'
 const artifactId = 'aurepay'
 const userAgent = 'AurePaySDKPublish (mailto=dev@aurepay.com.br)'
 const pathGroup = groupId.replaceAll('.', '/')

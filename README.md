@@ -1,4 +1,4 @@
-# com.aurepay:aurepay
+# br.com.aurepay:aurepay
 
 SDK oficial da API AurePay para Java.
 
@@ -6,7 +6,7 @@ SDK oficial da API AurePay para Java.
 
 ```xml
 <dependency>
-  <groupId>com.aurepay</groupId>
+  <groupId>br.com.aurepay</groupId>
   <artifactId>aurepay</artifactId>
   <version>0.1.0</version>
 </dependency>
