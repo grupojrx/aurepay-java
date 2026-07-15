@@ -130,7 +130,7 @@ public final class AurePay {
     }
 
     /** Recurso CRUD genérico (list/create/get/update/delete). */
-    public static final class CrudResource {
+    public static class CrudResource {
         private final HttpTransport transport;
         private final String basePath;
 
