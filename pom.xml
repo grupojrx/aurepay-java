@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.aurepay</groupId>
+  <artifactId>aurepay</artifactId>
+  <version>0.1.0</version>
+  <packaging>jar</packaging>
+
+  <name>AurePay Java SDK</name>
+  <description>SDK oficial da API AurePay para Java (tipado via OpenAPI)</description>
+  <url>https://api.aurepay.com.br/docs/sdks</url>
+
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://opensource.org/licenses/MIT</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>AurePay</name>
+      <organization>AurePay</organization>
+      <organizationUrl>https://aurepay.com.br</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+    <url>https://github.com/grupojrx/aurepay-java</url>
+    <connection>scm:git:https://github.com/grupojrx/aurepay-java.git</connection>
+    <developerConnection>scm:git:https://github.com/grupojrx/aurepay-java.git</developerConnection>
+  </scm>
+
+  <properties>
+    <maven.compiler.release>11</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <!-- Facade HTTP (AurePay.java) -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.11.0</version>
+    </dependency>
+    <!-- Client OpenAPI gerado (com.aurepay.generated) -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.18.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <version>2.18.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openapitools</groupId>
+      <artifactId>jackson-databind-nullable</artifactId>
+      <version>0.2.6</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>javax.annotation-api</artifactId>
+      <version>1.3.2</version>
+    </dependency>
+    <!-- @Nonnull / @Nullable usados pelo client OpenAPI gerado -->
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+      <version>3.0.2</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.3.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.11.2</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <doclint>none</doclint>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>3.2.7</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <gpgArguments>
+            <arg>--pinentry-mode</arg>
+            <arg>loopback</arg>
+          </gpgArguments>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+        <version>0.9.0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <publishingServerId>central</publishingServerId>
+          <autoPublish>true</autoPublish>
+          <waitUntil>published</waitUntil>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
