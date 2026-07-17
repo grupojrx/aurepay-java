@@ -25,8 +25,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -36,22 +34,37 @@ import com.aurepay.generated.ApiClient;
  */
 @JsonPropertyOrder({
   WalletCreate.JSON_PROPERTY_NAME,
-  WalletCreate.JSON_PROPERTY_METADATA
+  WalletCreate.JSON_PROPERTY_EXTERNAL_ID,
+  WalletCreate.JSON_PROPERTY_TAX_ID,
+  WalletCreate.JSON_PROPERTY_EMAIL,
+  WalletCreate.JSON_PROPERTY_PHONE
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.23.0")
 public class WalletCreate {
   public static final String JSON_PROPERTY_NAME = "name";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String name;
 
-  public static final String JSON_PROPERTY_METADATA = "metadata";
+  public static final String JSON_PROPERTY_EXTERNAL_ID = "externalId";
   @javax.annotation.Nullable
-  private Map<String, Object> metadata = new HashMap<>();
+  private String externalId;
+
+  public static final String JSON_PROPERTY_TAX_ID = "taxId";
+  @javax.annotation.Nullable
+  private String taxId;
+
+  public static final String JSON_PROPERTY_EMAIL = "email";
+  @javax.annotation.Nullable
+  private String email;
+
+  public static final String JSON_PROPERTY_PHONE = "phone";
+  @javax.annotation.Nullable
+  private String phone;
 
   public WalletCreate() { 
   }
 
-  public WalletCreate name(@javax.annotation.Nullable String name) {
+  public WalletCreate name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
@@ -60,50 +73,114 @@ public class WalletCreate {
    * Get name
    * @return name
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(@javax.annotation.Nullable String name) {
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
 
-  public WalletCreate metadata(@javax.annotation.Nullable Map<String, Object> metadata) {
-    this.metadata = metadata;
-    return this;
-  }
-
-  public WalletCreate putMetadataItem(String key, Object metadataItem) {
-    if (this.metadata == null) {
-      this.metadata = new HashMap<>();
-    }
-    this.metadata.put(key, metadataItem);
+  public WalletCreate externalId(@javax.annotation.Nullable String externalId) {
+    this.externalId = externalId;
     return this;
   }
 
   /**
-   * Get metadata
-   * @return metadata
+   * Get externalId
+   * @return externalId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_METADATA, required = false)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, Object> getMetadata() {
-    return metadata;
+  @JsonProperty(value = JSON_PROPERTY_EXTERNAL_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getExternalId() {
+    return externalId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_METADATA, required = false)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetadata(@javax.annotation.Nullable Map<String, Object> metadata) {
-    this.metadata = metadata;
+  @JsonProperty(value = JSON_PROPERTY_EXTERNAL_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExternalId(@javax.annotation.Nullable String externalId) {
+    this.externalId = externalId;
+  }
+
+
+  public WalletCreate taxId(@javax.annotation.Nullable String taxId) {
+    this.taxId = taxId;
+    return this;
+  }
+
+  /**
+   * CNPJ obrigatório no modo walletMode&#x3D;kyc
+   * @return taxId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TAX_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getTaxId() {
+    return taxId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TAX_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTaxId(@javax.annotation.Nullable String taxId) {
+    this.taxId = taxId;
+  }
+
+
+  public WalletCreate email(@javax.annotation.Nullable String email) {
+    this.email = email;
+    return this;
+  }
+
+  /**
+   * E-mail do titular para convite KYC (modo kyc)
+   * @return email
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EMAIL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getEmail() {
+    return email;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EMAIL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEmail(@javax.annotation.Nullable String email) {
+    this.email = email;
+  }
+
+
+  public WalletCreate phone(@javax.annotation.Nullable String phone) {
+    this.phone = phone;
+    return this;
+  }
+
+  /**
+   * Telefone do titular para convite KYC (modo kyc)
+   * @return phone
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PHONE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPhone() {
+    return phone;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PHONE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPhone(@javax.annotation.Nullable String phone) {
+    this.phone = phone;
   }
 
 
@@ -120,12 +197,15 @@ public class WalletCreate {
     }
     WalletCreate walletCreate = (WalletCreate) o;
     return Objects.equals(this.name, walletCreate.name) &&
-        Objects.equals(this.metadata, walletCreate.metadata);
+        Objects.equals(this.externalId, walletCreate.externalId) &&
+        Objects.equals(this.taxId, walletCreate.taxId) &&
+        Objects.equals(this.email, walletCreate.email) &&
+        Objects.equals(this.phone, walletCreate.phone);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, metadata);
+    return Objects.hash(name, externalId, taxId, email, phone);
   }
 
   @Override
@@ -133,7 +213,10 @@ public class WalletCreate {
     StringBuilder sb = new StringBuilder();
     sb.append("class WalletCreate {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    externalId: ").append(toIndentedString(externalId)).append("\n");
+    sb.append("    taxId: ").append(toIndentedString(taxId)).append("\n");
+    sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -183,13 +266,24 @@ public class WalletCreate {
       joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
-    // add `metadata` to the URL query string
-    if (getMetadata() != null) {
-      for (String _key : getMetadata().keySet()) {
-        joiner.add(String.format(java.util.Locale.ROOT, "%smetadata%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
-            getMetadata().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getMetadata().get(_key)))));
-      }
+    // add `externalId` to the URL query string
+    if (getExternalId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sexternalId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExternalId()))));
+    }
+
+    // add `taxId` to the URL query string
+    if (getTaxId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%staxId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTaxId()))));
+    }
+
+    // add `email` to the URL query string
+    if (getEmail() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%semail%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmail()))));
+    }
+
+    // add `phone` to the URL query string
+    if (getPhone() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sphone%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhone()))));
     }
 
     return joiner.toString();
