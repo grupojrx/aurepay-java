@@ -406,6 +406,124 @@ public class DepositsApi {
   }
 
   /**
+   * Payload request/response do depósito
+   * Retorna o request e o response da chamada de API que criou o depósito. Retenção de 90 dias; após isso responde PAYLOAD_NOT_FOUND. 
+   * @param id Identificador ULID do recurso (required)
+   * @return SuccessEnvelope
+   * @throws ApiException if fails to make API call
+   */
+  public SuccessEnvelope depositsGetPayload(@javax.annotation.Nonnull String id) throws ApiException {
+    return depositsGetPayload(id, null);
+  }
+
+  /**
+   * Payload request/response do depósito
+   * Retorna o request e o response da chamada de API que criou o depósito. Retenção de 90 dias; após isso responde PAYLOAD_NOT_FOUND. 
+   * @param id Identificador ULID do recurso (required)
+   * @param headers Optional headers to include in the request
+   * @return SuccessEnvelope
+   * @throws ApiException if fails to make API call
+   */
+  public SuccessEnvelope depositsGetPayload(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<SuccessEnvelope> localVarResponse = depositsGetPayloadWithHttpInfo(id, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Payload request/response do depósito
+   * Retorna o request e o response da chamada de API que criou o depósito. Retenção de 90 dias; após isso responde PAYLOAD_NOT_FOUND. 
+   * @param id Identificador ULID do recurso (required)
+   * @return ApiResponse&lt;SuccessEnvelope&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SuccessEnvelope> depositsGetPayloadWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
+    return depositsGetPayloadWithHttpInfo(id, null);
+  }
+
+  /**
+   * Payload request/response do depósito
+   * Retorna o request e o response da chamada de API que criou o depósito. Retenção de 90 dias; após isso responde PAYLOAD_NOT_FOUND. 
+   * @param id Identificador ULID do recurso (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SuccessEnvelope&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SuccessEnvelope> depositsGetPayloadWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = depositsGetPayloadRequestBuilder(id, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("depositsGetPayload", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SuccessEnvelope>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SuccessEnvelope responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SuccessEnvelope>() {});
+        
+
+        return new ApiResponse<SuccessEnvelope>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder depositsGetPayloadRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling depositsGetPayload");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/deposits/{id}/payload"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Lista depósitos
    * 
    * @return SuccessEnvelope

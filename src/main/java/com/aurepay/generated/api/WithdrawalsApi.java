@@ -18,6 +18,7 @@ import com.aurepay.generated.ApiResponse;
 import com.aurepay.generated.Configuration;
 import com.aurepay.generated.Pair;
 
+import com.aurepay.generated.model.ErrorBody;
 import com.aurepay.generated.model.SuccessEnvelope;
 import com.aurepay.generated.model.WithdrawalCreate;
 
@@ -386,6 +387,124 @@ public class WithdrawalsApi {
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
     String localVarPath = "/withdrawals/{id}"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Payload request/response do saque
+   * Retorna o request e o response da chamada de API que criou o saque. Retenção de 90 dias; após isso responde PAYLOAD_NOT_FOUND. 
+   * @param id Identificador ULID do recurso (required)
+   * @return SuccessEnvelope
+   * @throws ApiException if fails to make API call
+   */
+  public SuccessEnvelope withdrawalsGetPayload(@javax.annotation.Nonnull String id) throws ApiException {
+    return withdrawalsGetPayload(id, null);
+  }
+
+  /**
+   * Payload request/response do saque
+   * Retorna o request e o response da chamada de API que criou o saque. Retenção de 90 dias; após isso responde PAYLOAD_NOT_FOUND. 
+   * @param id Identificador ULID do recurso (required)
+   * @param headers Optional headers to include in the request
+   * @return SuccessEnvelope
+   * @throws ApiException if fails to make API call
+   */
+  public SuccessEnvelope withdrawalsGetPayload(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<SuccessEnvelope> localVarResponse = withdrawalsGetPayloadWithHttpInfo(id, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Payload request/response do saque
+   * Retorna o request e o response da chamada de API que criou o saque. Retenção de 90 dias; após isso responde PAYLOAD_NOT_FOUND. 
+   * @param id Identificador ULID do recurso (required)
+   * @return ApiResponse&lt;SuccessEnvelope&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SuccessEnvelope> withdrawalsGetPayloadWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
+    return withdrawalsGetPayloadWithHttpInfo(id, null);
+  }
+
+  /**
+   * Payload request/response do saque
+   * Retorna o request e o response da chamada de API que criou o saque. Retenção de 90 dias; após isso responde PAYLOAD_NOT_FOUND. 
+   * @param id Identificador ULID do recurso (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SuccessEnvelope&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SuccessEnvelope> withdrawalsGetPayloadWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = withdrawalsGetPayloadRequestBuilder(id, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("withdrawalsGetPayload", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SuccessEnvelope>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SuccessEnvelope responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SuccessEnvelope>() {});
+        
+
+        return new ApiResponse<SuccessEnvelope>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder withdrawalsGetPayloadRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling withdrawalsGetPayload");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/withdrawals/{id}/payload"
         .replace("{id}", ApiClient.urlEncode(id.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
