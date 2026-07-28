@@ -1,6 +1,6 @@
 /*
  * AurePay REST API
- * API REST AurePay (camelCase inglês): depósitos PIX, saques, conversões BRL/USDT, webhooks, empresa, carteiras e MED/chargebacks. Auth: headers `X-Api-Key` e `X-Api-Secret`. Envelope: `{ \"success\": true, \"data\": ... }` / `{ \"success\": false, \"error\": { \"code\", \"message\", \"details\" } }`. Fonte para agentes: https://api.aurepay.com.br/llms-full.txt 
+ * API REST AurePay (camelCase inglês): depósitos PIX, saques, conversões BRL/USDT, webhooks, empresa, carteiras e MED/chargebacks. Auth: headers `X-Api-Key` (`pk_live_`/`pk_test_`) e `X-Api-Secret` (`sk_live_`/`sk_test_`). Envelope: `{ \"success\": true, \"data\": ... }` / `{ \"success\": false, \"error\": { \"code\", \"message\", \"details\" } }`. Fonte para agentes: https://api.aurepay.com.br/llms-full.txt 
  *
  * The version of the OpenAPI document: 0.1.2
  * 
