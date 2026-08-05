@@ -26,7 +26,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.net.URI;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -43,7 +42,6 @@ import com.aurepay.generated.ApiClient;
   DepositCreate.JSON_PROPERTY_METHOD,
   DepositCreate.JSON_PROPERTY_AMOUNT,
   DepositCreate.JSON_PROPERTY_REFERENCE,
-  DepositCreate.JSON_PROPERTY_EXPIRATION,
   DepositCreate.JSON_PROPERTY_CALLBACK_URL,
   DepositCreate.JSON_PROPERTY_CUSTOMER,
   DepositCreate.JSON_PROPERTY_METADATA,
@@ -97,10 +95,6 @@ public class DepositCreate {
   public static final String JSON_PROPERTY_REFERENCE = "reference";
   @javax.annotation.Nonnull
   private String reference;
-
-  public static final String JSON_PROPERTY_EXPIRATION = "expiration";
-  @javax.annotation.Nullable
-  private OffsetDateTime expiration;
 
   public static final String JSON_PROPERTY_CALLBACK_URL = "callbackUrl";
   @javax.annotation.Nullable
@@ -190,30 +184,6 @@ public class DepositCreate {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setReference(@javax.annotation.Nonnull String reference) {
     this.reference = reference;
-  }
-
-
-  public DepositCreate expiration(@javax.annotation.Nullable OffsetDateTime expiration) {
-    this.expiration = expiration;
-    return this;
-  }
-
-  /**
-   * Get expiration
-   * @return expiration
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXPIRATION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public OffsetDateTime getExpiration() {
-    return expiration;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_EXPIRATION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExpiration(@javax.annotation.Nullable OffsetDateTime expiration) {
-    this.expiration = expiration;
   }
 
 
@@ -344,7 +314,6 @@ public class DepositCreate {
     return Objects.equals(this.method, depositCreate.method) &&
         Objects.equals(this.amount, depositCreate.amount) &&
         Objects.equals(this.reference, depositCreate.reference) &&
-        Objects.equals(this.expiration, depositCreate.expiration) &&
         Objects.equals(this.callbackUrl, depositCreate.callbackUrl) &&
         Objects.equals(this.customer, depositCreate.customer) &&
         Objects.equals(this.metadata, depositCreate.metadata) &&
@@ -353,7 +322,7 @@ public class DepositCreate {
 
   @Override
   public int hashCode() {
-    return Objects.hash(method, amount, reference, expiration, callbackUrl, customer, metadata, splits);
+    return Objects.hash(method, amount, reference, callbackUrl, customer, metadata, splits);
   }
 
   @Override
@@ -363,7 +332,6 @@ public class DepositCreate {
     sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
-    sb.append("    expiration: ").append(toIndentedString(expiration)).append("\n");
     sb.append("    callbackUrl: ").append(toIndentedString(callbackUrl)).append("\n");
     sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
@@ -425,11 +393,6 @@ public class DepositCreate {
     // add `reference` to the URL query string
     if (getReference() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sreference%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReference()))));
-    }
-
-    // add `expiration` to the URL query string
-    if (getExpiration() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sexpiration%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExpiration()))));
     }
 
     // add `callbackUrl` to the URL query string
